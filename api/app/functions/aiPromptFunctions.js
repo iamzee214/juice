@@ -73,8 +73,7 @@ CRITICAL INSTRUCTIONS THAT MUST BE FOLLOWED AT ALL TIMES:
   return template;
 }
 
-const OPENAI_API_KEY =
-  "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";
+const OPENAI_API_KEY = "";
 
 import { OpenAI } from "openai";
 
