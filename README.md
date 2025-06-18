@@ -10,7 +10,6 @@ The platform consists of three main components:
 
 1. **API Backend** (`/api`) - Node.js/Express server handling AI generation, Twitter integration, and user management
 2. **Dashboard Frontend** (`/dapp`) - Vue.js application for user configuration and timeline management
-3. **Landing Page** (`/landing-page`) - Marketing site with project information and roadmap
 
 ### AI Tweet Generation System
 
