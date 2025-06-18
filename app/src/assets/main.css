@@ -1,0 +1,781 @@
+@import "./base.css";
+@font-face {
+  font-family: "urbanist";
+  src: url("urbanist.ttf");
+}
+
+/* Global Background - Applied to all pages */
+html,
+body,
+#app {
+  min-height: 100vh;
+}
+
+body,
+.bg,
+.min-h-screen {
+  background-image: url("/juice-background-website.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Dark overlay for better text readability */
+body::before,
+.bg::before,
+.min-h-screen::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Ensure the overlay is applied to all main containers */
+.w-full.min-h-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ensure content appears above the overlay */
+.w-full.min-h-screen > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Override any solid backgrounds to ensure juice background shows */
+.bg-juice-cream,
+.bg-cream,
+[class*="bg-cream"] {
+  background-image: url("/juice-background-website.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* Enhanced Glass Morphism Design System */
+
+/* Primary Glass Container */
+.glass-container {
+  background: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Secondary Glass Container */
+.glass-card {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.15),
+    0 2px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Glass Buttons */
+.glass-button {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 12px !important;
+  color: rgba(255, 255, 255, 0.98) !important;
+  font-weight: 600 !important;
+  padding: 12px 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.glass-button:hover {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Fixed Position Glass Button Override */
+.glass-button.fixed {
+  position: fixed !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Glass Button Variants */
+.glass-button-primary {
+  background: linear-gradient(135deg, #55d43f 0%, #01a044 100%) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(85, 212, 63, 0.4) !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+  box-shadow:
+    0 4px 16px rgba(85, 212, 63, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.glass-button-primary:hover {
+  background: linear-gradient(135deg, #4bc736 0%, #019a3d 100%) !important;
+  border: 1px solid rgba(85, 212, 63, 0.55) !important;
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 8px 25px rgba(85, 212, 63, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Glass Input Fields */
+.glass-input {
+  background: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 12px !important;
+  color: rgba(255, 255, 255, 0.98) !important;
+  padding: 12px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-input:focus {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(85, 212, 63, 0.4) !important;
+  outline: none !important;
+  box-shadow:
+    0 0 0 3px rgba(85, 212, 63, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Navigation Glass */
+.glass-nav {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Update existing classes to use glass morphism */
+.containerStyle {
+  background: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.cardContainer {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.15),
+    0 2px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.cardContainer:hover {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    0 6px 20px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.navContainer {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 20px !important;
+  padding: 24px 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.navContainer::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  ) !important;
+}
+
+/* Button Updates */
+.btn-grad,
+.swv-button-trigger,
+.button {
+  background: rgba(85, 212, 63, 0.15) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(85, 212, 63, 0.3) !important;
+  border-radius: 12px !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600 !important;
+  padding: 12px 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+  box-shadow:
+    0 4px 16px rgba(85, 212, 63, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-grad:hover,
+.swv-button-trigger:hover,
+.button:hover {
+  background: rgba(85, 212, 63, 0.25) !important;
+  border: 1px solid rgba(85, 212, 63, 0.4) !important;
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 8px 25px rgba(85, 212, 63, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.btn-grad-sm {
+  background: rgba(85, 212, 63, 0.15) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(85, 212, 63, 0.3) !important;
+  border-radius: 10px !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600 !important;
+  padding: 8px 16px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.btn-alt {
+  background: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 12px !important;
+  color: rgba(255, 255, 255, 0.98) !important;
+  padding: 12px 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-alt::before {
+  display: none !important;
+}
+
+.btn-alt:hover {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Recommendation Container */
+.recomendationContainer {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Data Grid */
+.data-grid {
+  background: rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+}
+
+/* AI Terminal */
+.ai-terminal {
+  background: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(85, 212, 63, 0.3) !important;
+  border-radius: 12px !important;
+  color: rgba(85, 212, 63, 0.9) !important;
+  padding: 20px !important;
+  font-family: "Courier New", monospace !important;
+}
+
+/* AI Chip */
+.ai-chip {
+  background: rgba(85, 212, 63, 0.12) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(85, 212, 63, 0.25) !important;
+  border-radius: 20px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding: 8px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.ai-chip:hover {
+  background: rgba(85, 212, 63, 0.2) !important;
+  border: 1px solid rgba(85, 212, 63, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Text Colors for Glass Design - Enhanced Readability */
+.text-white,
+.text-gray-800,
+.text-gray-900,
+.text-black {
+  color: rgba(255, 255, 255, 0.98) !important;
+}
+
+.text-gray-600,
+.text-gray-700 {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.text-gray-400,
+.text-gray-500 {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Juice-specific text colors for glass design */
+.text-juice-green-dark,
+.text-Juice-white {
+  color: rgba(255, 255, 255, 0.98) !important;
+}
+
+.text-juice-green {
+  color: rgba(85, 212, 63, 0.95) !important;
+}
+
+/* Override any remaining dark text colors */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgba(255, 255, 255, 0.98) !important;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+span {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+div {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Enhanced Gradient Text */
+.gradient-text {
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(85, 212, 63, 0.95)
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  display: inline-block !important;
+  text-shadow: none !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) !important;
+}
+
+/* Glass Glow Effects */
+.glow-text {
+  color: rgba(255, 255, 255, 0.98) !important;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(85, 212, 63, 0.2) !important;
+}
+
+/* Additional text readability improvements */
+.text-xs {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.text-sm {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.text-base {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.text-lg {
+  color: rgba(255, 255, 255, 0.98) !important;
+}
+
+.text-xl {
+  color: rgba(255, 255, 255, 0.98) !important;
+}
+
+/* Scrollbar Updates */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(85, 212, 63, 0.6);
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
+}
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 212, 63, 0.8);
+}
+
+/* Utility Classes for Easy Application */
+.glass-effect {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+}
+
+.glass-effect-strong {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 20px !important;
+}
+
+.glass-effect-subtle {
+  background: rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+}
+
+/* Ensure all divs get glass effect by default */
+div:not(.no-glass) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Override any remaining solid backgrounds */
+.bg-white,
+.bg-gray-50,
+.bg-gray-100,
+.bg-gray-200 {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.shadowElem {
+  box-shadow:
+    0 0 25px 5px rgba(85, 212, 63, 0.4),
+    0 0 15px 3px rgba(85, 212, 63, 0.3);
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(85, 212, 63, 0.3);
+  border-bottom-color: #55d43f;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader2 {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(85, 212, 63, 0.3);
+  border-bottom-color: #55d43f;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loaderDots {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+}
+
+@keyframes l5 {
+  0% {
+    box-shadow:
+      25px 0 rgba(85, 212, 63, 1),
+      -25px 0 rgba(85, 212, 63, 0.6);
+    background: rgba(85, 212, 63, 1);
+  }
+  33% {
+    box-shadow:
+      25px 0 rgba(85, 212, 63, 0.6),
+      -25px 0 rgba(85, 212, 63, 0.8);
+    background: rgba(85, 212, 63, 0.8);
+  }
+  66% {
+    box-shadow:
+      25px 0 rgba(85, 212, 63, 0.8),
+      -25px 0 rgba(85, 212, 63, 0.6);
+    background: rgba(85, 212, 63, 0.8);
+  }
+  100% {
+    box-shadow:
+      25px 0 rgba(85, 212, 63, 0.6),
+      -25px 0 rgba(85, 212, 63, 1);
+    background: rgba(85, 212, 63, 1);
+  }
+}
+
+.button {
+  @apply rounded-xl bg-juice-green text-white border-none px-3 py-1 font-medium;
+  background-image: linear-gradient(135deg, #55d43f, #01a044);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 14px rgba(0, 0, 0, 0.1),
+    0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.glow-text {
+  color: #55d43f;
+  text-shadow: 0 0 8px rgba(85, 212, 63, 0.5);
+}
+
+.blinking-cursor {
+  color: #55d43f;
+  animation: blink 1s step-end infinite;
+  font-size: 0.9em;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.loadingAnimation {
+  --s: 40px;
+  --g: 8px;
+
+  width: calc(3 * (1.353 * var(--s) + var(--g)));
+  display: grid;
+  justify-items: end;
+  aspect-ratio: 3;
+  overflow: hidden;
+  --_m: linear-gradient(90deg, #0000, #000 24px calc(100% - 24px), #0000);
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+}
+.loadingAnimation:before {
+  content: "";
+  width: 200%;
+  background:
+    linear-gradient(90deg, #55d43f 50%, #0000 0),
+    conic-gradient(
+      from -90deg at var(--s) calc(0.353 * var(--s)),
+      #55d43f 135deg,
+      rgba(85, 212, 63, 0.6) 0 270deg,
+      rgba(85, 212, 63, 0.8) 0
+    );
+  background-blend-mode: multiply;
+  --_m:
+    linear-gradient(
+      to bottom right,
+      #0000 calc(0.25 * var(--s)),
+      #000 0 calc(100% - calc(0.25 * var(--s)) - 1.414 * var(--g)),
+      #0000 0
+    ),
+    conic-gradient(
+      from -90deg at right var(--g) bottom var(--g),
+      #000 90deg,
+      #0000 0
+    );
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  background-size:
+    calc(100% / 3) 100%,
+    calc(100% / 6) 100%;
+  -webkit-mask-size: calc(100% / 6) 100%;
+  mask-size: calc(100% / 6) 100%;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  animation: l10 1s infinite linear;
+}
+@keyframes l10 {
+  to {
+    transform: translate(calc(100% / 3));
+  }
+}
+
+/* Adding AI-inspired elements */
+.ai-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #55d43f;
+  display: inline-block;
+  margin-right: 8px;
+  animation: ai-pulse 2s infinite;
+}
+
+@keyframes ai-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(85, 212, 63, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(85, 212, 63, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(85, 212, 63, 0);
+  }
+}
+
+.ai-card-highlight {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.ai-card-highlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 150%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #55d43f,
+    #01a044,
+    transparent
+  );
+  animation: ai-scan 3s infinite linear;
+  z-index: 1;
+}
+
+.ai-card-highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  width: 150%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #01a044,
+    #55d43f,
+    transparent
+  );
+  animation: ai-scan-reverse 3s infinite linear;
+  animation-delay: 1.5s;
+  z-index: 1;
+}
+
+@keyframes ai-scan {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes ai-scan-reverse {
+  0% {
+    right: -150%;
+  }
+  100% {
+    right: 100%;
+  }
+}
+
+/* Remove all cream color variations and replace with glass morphism */
+.cream-light,
+.cream-medium,
+.cream-dark,
+.cream-solid,
+.cream-muted {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+}
+
+.cream-border {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Button and interactive element text improvements */
+button {
+  color: rgba(255, 255, 255, 0.98) !important;
+}
+
+a {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+label {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+input {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Ensure all Tailwind text size classes have proper contrast */
+.text-2xl,
+.text-3xl,
+.text-4xl,
+.text-5xl,
+.text-6xl {
+  color: rgba(255, 255, 255, 0.98) !important;
+}
